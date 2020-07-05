@@ -314,13 +314,19 @@ namespace SocketIO
 			debugMethod.Invoke("[SocketIO] " + packet);
 			#endif
 			
-			try {
+			try
+			{
 				ws.Send(encoder.Encode(packet));
-			} catch(SocketIOException ex) {
-				#if SOCKET_IO_DEBUG
-				debugMethod.Invoke(ex.ToString());
-				#endif
 			}
+			// @fix: This fix prevents from warning errors about the unused "ex" variable if the SOCKET_IO_DEBUG define is not declared
+			#if SOCKET_IO_DEBUG
+			catch(SocketIOException ex)
+			{
+				debugMethod.Invoke(ex.ToString());
+			}
+			#else
+			catch(SocketIOException) { }
+			#endif
 		}
 
 		private void OnOpen(object sender, EventArgs e)
@@ -405,13 +411,19 @@ namespace SocketIO
 		{
 			if (!handlers.ContainsKey(ev.name)) { return; }
 			foreach (Action<SocketIOEvent> handler in this.handlers[ev.name]) {
-				try{
+				try
+				{
 					handler(ev);
-				} catch(Exception ex){
-					#if SOCKET_IO_DEBUG
-					debugMethod.Invoke(ex.ToString());
-					#endif
 				}
+				// @fix: This fix prevents from warning errors about the unused "ex" variable if the SOCKET_IO_DEBUG define is not declared
+				#if SOCKET_IO_DEBUG
+				catch (Exception ex)
+				{
+					debugMethod.Invoke(ex.ToString());
+				}
+				#else
+				catch(Exception) { }
+				#endif
 			}
 		}
 

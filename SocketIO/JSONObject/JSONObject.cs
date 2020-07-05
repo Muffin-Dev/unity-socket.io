@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using Debug = UnityEngine.Debug;
+using System.Globalization;
 
 /*
  * http://www.opensource.org/licenses/lgpl-2.1.php
@@ -309,7 +310,8 @@ public class JSONObject {
 						default:
 							try {
 #if USEFLOAT
-								n = System.Convert.ToSingle(str);
+								// @fix: Make this method culture invariant avoids JSON parse errors in countries that use commas instead of points for decimal numbers
+								n = System.Convert.ToSingle(str, CultureInfo.InvariantCulture);
 #else
 								n = System.Convert.ToDouble(str);				 
 #endif
@@ -837,7 +839,8 @@ public class JSONObject {
 					builder.Append(NaN);
 #endif
 				else
-					builder.Append(n.ToString());
+					// @fix: Make this method culture invariant avoids JSON parse errors in countries that use commas instead of points for decimal numbers
+					builder.Append(n.ToString(CultureInfo.InvariantCulture));
 				break;
 			case Type.OBJECT:
 				builder.Append("{");
