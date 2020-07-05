@@ -1,13 +1,31 @@
+# Muffin Dev for Unity - Fork of [Socket.io for Unity](https://github.com/fpanettieri/unity-socket.io-DEPRECATED) from Fabio Panettieri
+
+This repository is a fork of the deprecated [Socket.io for Unity](https://github.com/fpanettieri/unity-socket.io-DEPRECATED) package from Fabio Panettieri, that allows you to communicate easily with a socket.io-based backend from a Unity project.
+
+**That package is deprecated, and shouldn't be used in production**. I'm currently working to find a better solution, but for now, this package works like a charm in my projects that use a socket.io-based server. I made some changes on the original scripts in order to avoid some errors and make it usable with the newest versions of Unity.
+
+Here is a list of all changes applied to the original package. Note that in the modified script, all updates are marked with `@fix` comment.
+
+- Updated `JSONObject` utility class to make it culture invariant, avoiding parsing errors for countries that use commas instead of points for decimal numbers
+- Fixed warning errors from unused `ex` variable in `SocketIOComponent.cs` script
+- Removed warning errors from deprecated `tangentmode` property in `VectorTemplate.cs` script. Note that I basically don't need it until now, so I just commented the lines
+
+## Known issues
+
+This package can't work with IL2CPP scripting backend, but works with Mono. This is not a problem until you want to build for Android.
+
+## Original README file from [Socket.io for Unity](https://github.com/fpanettieri/unity-socket.io-DEPRECATED) repository
+
 --------------------------------------------------------------------------------
         DEPRECATED                   SocketIO for Unity - v1.0.0                          
 --------------------------------------------------------------------------------
 
-# Deprecation Notice #
+### Deprecation Notice
 
   I haven't used this package in almost 2 years now, the main protocol will
   probably work, but I no longer mantain it nor add support for new features.
 
-# Overview #
+### Overview
   
   This plugin allows you to integrate your Unity game with Socket.IO back-end
   It implements the protocol described at socket.io-protocol github repo.
@@ -16,7 +34,7 @@
   While connected, Socket.IO run on it's own thread to avoid blocking the main
   thread. Events are queued and dispatched on the next frame they are received.
 
-# Quick Start #
+### Quick Start
 
   In order to start using Socket.IO in your project you need to:
   1. Drag the SocketIO prefab from SocketIO/Prefab/ to your scene.
@@ -25,7 +43,7 @@
   4. That's it! You can now start using Socket.IO in your game.
 
 
-# How to use #
+### How to use
  
   1. Obtaining the Socket.IO component reference
   
@@ -97,7 +115,7 @@
     Not implemented yet!
 
 
-# Examples #
+### Examples
   
   This package also includes a minimalist test that you might want to use
   to verify that you have setup your environment properly.
@@ -129,7 +147,7 @@
   9. Open SocketIO/Scripts/Test/TestSocketIO.cs to check what's going on. 
 
 
-# Troubleshooting #
+### Troubleshooting
 
   This is the first release of the plugin, so error may appear.
   In order to track them, I've included some debug code that it's
@@ -146,6 +164,6 @@
   5. Remember to comment it again after you used it.
   
 
-# License #
+### License
 
   SocketIO for Unity is provided under The MIT License
