@@ -2,9 +2,9 @@
 
 This repository is a fork of the deprecated [Socket.io for Unity](https://github.com/fpanettieri/unity-socket.io-DEPRECATED) package from Fabio Panettieri, that allows you to communicate easily with a socket.io-based backend from a Unity project.
 
-**That package is deprecated, and shouldn't be used in production**. I'm currently working to find a better solution, but for now, this package works like a charm in my projects that use a socket.io-based server. I made some changes on the original scripts in order to avoid some errors and make it usable with the newest versions of Unity.
+**That package is deprecated, and shouldn't be used in production. I'm currently working to find a better solution**, but for now, this package works like a charm in my projects that use a socket.io-based server. I made some changes on the original scripts in order to avoid some errors and make it usable with the newest versions of Unity.
 
-Here is a list of all changes applied to the original package. Note that in the modified script, all updates are marked with `@fix` comment.
+Here is a list of all changes applied to the original package. Note that in the modified scripts, all updates are marked with `@fix` comment.
 
 - Updated `JSONObject` utility class to make it culture invariant, avoiding parsing errors for countries that use commas instead of points for decimal numbers
 - Fixed warning errors from unused `ex` variable in `SocketIOComponent.cs` script
